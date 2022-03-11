@@ -1,0 +1,34 @@
+<p>paginacao-placas works!</p>
+<table class="table table-striped table-bordered text-center">
+  <thead class="font-weight-bold">
+    <tr>
+      <th *ngFor="let item of headers; let i = index" class="tabela-header" (click)="ordena(i)">
+        {{item.header}}
+        <i [ngClass]="{'fa-caret-up': item.orderType == 'asc',
+                      'fa-caret-down': item.orderType == 'desc',
+                      'icon-unordered': item.orderType == 'none'}" class="fas" aria-hidden="true"></i>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of realLista.content">
+      <td>{{item.id}}</td>
+      <td>{{item.markNumber}}</td>
+      <td>{{item.codigoSap}}</td>
+      <td>{{item.peso}}</td>
+      <td>{{item.altura}}</td>
+      <td>{{item.largura}}</td>
+      <td>{{item.espessura}}</td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="isLoading" class="d-block mx-auto spinner-border text-primary" role="status">
+</div>
+
+<div *ngIf="isErrado" class="d-flex mx-auto">
+  <span class="text-center font-weight-bold mx-auto">Tivemos uma falha, Houston!</span>
+</div>
+
+<!-- <button (click)="logaPraMim()">Loga pra mim</button> -->
+
+<button class="d-block mx-auto" (click)="resetaPraMim()">Resetar ordenação</button>
